@@ -8,7 +8,7 @@ const app            = express();
 
 
 
-const port = 8000;
+const port = 8000; 
 
 app.use(bodyParser.urlencoded({extended:true}))
 
@@ -17,7 +17,8 @@ MongoClient.connect(db.url, (err, database) => {
     db = database.db("eusdb")
     require('./app/routes')(app, db);
 
-    app.listen(port, () => {
+    app.listen(process.env.PORT || port, () => {
     console.log('We are live on ' + port);
+    console.log('We are live on ' + process.env.PORT);
     });
 })
